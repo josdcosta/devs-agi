@@ -8,7 +8,7 @@ public class Main {
         static double simularCarteira(double[] carteira, double[] retornoMedio){
         double valorFinal = 0;
             for (int i = 0; i < carteira.length; i++) {
-                valorFinal += carteira[i]*Math.pow(1+retornoMedio[i],1);
+                valorFinal += carteira[i]*(1+retornoMedio[i]);
             }
             return valorFinal;
         }
