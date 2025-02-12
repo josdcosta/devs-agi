@@ -1,3 +1,5 @@
+package com.agibank.Semana4d1.ex7;
+
 public class Main {
     public static void main(String[] args) {
         double[] carteira = new double[]{1000.0, 2000.0, 1500.0};
@@ -8,7 +10,7 @@ public class Main {
         static double simularCarteira(double[] carteira, double[] retornoMedio){
         double valorFinal = 0;
             for (int i = 0; i < carteira.length; i++) {
-                valorFinal += carteira[i]*(1+retornoMedio[i]);
+                valorFinal = carteira[i]*(1+retornoMedio[i]);
             }
             return valorFinal;
         }

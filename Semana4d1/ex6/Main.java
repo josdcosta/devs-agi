@@ -1,3 +1,5 @@
+package com.agibank.Semana4d1.ex6;
+
 public class Main {
     public static void main(String[] args) {
         double[] retornoAcoes = new double[]{0.01, 0.02, -0.01, 0.03, -0.02};
@@ -5,20 +7,23 @@ public class Main {
         System.out.println(desvPad);
     }
 
-
     static double calcularVolatilidade(double[] retornoAcoes) {
-        double media = media(retornoAcoes);
+        return Math.sqrt(calcularVariancia(retornoAcoes));
+    }
+
+    static double calcularVariancia(double[] vetor){
+        double media = media(vetor);
         double somaQuadradosdaDif = 0;
-        for (int i = 0; i < retornoAcoes.length; i++) {
-            somaQuadradosdaDif += Math.pow((retornoAcoes[i]-media),2);
+        for (double v : vetor) {
+            somaQuadradosdaDif += Math.pow((v - media), 2);
         }
-        return Math.sqrt(somaQuadradosdaDif/retornoAcoes.length);
+        return somaQuadradosdaDif/vetor.length;
     }
 
     static double media(double[] vetor){
         double somaVetor = 0;
-        for (int i = 0; i < vetor.length; i++) {
-            somaVetor += vetor[i];
+        for (double v : vetor) {
+            somaVetor += v;
         }
         return somaVetor/vetor.length;
     }

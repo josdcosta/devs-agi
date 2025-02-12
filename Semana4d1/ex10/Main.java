@@ -1,10 +1,12 @@
+package com.agibank.Semana4d1.ex10;
+
 import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
         double[] monteCarlo = simularPrecoMonteCarlo(100.0, 0.001, 0.02, 10);
-        for (int i = 0; i < monteCarlo.length; i++) {
-            System.out.println(monteCarlo[i]);
+        for (double v : monteCarlo) {
+            System.out.println(v);
         }
     }
         static double[] simularPrecoMonteCarlo(double precoInicial, double mediaDiaria, double volatilidadeDiaria, int periodo){
