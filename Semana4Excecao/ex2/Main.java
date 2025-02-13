@@ -1,21 +1,45 @@
 package com.agibank.Semana4Excecao.ex2;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
-        double[] saldoConta = new double[]{1000.0, 2000.0, 3000.0, 4000.0, 5000.0, 6000.0, 7000.0, 8000.0, 9000.0, 10.000};
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Digite um índice de 1 a 10.");
-        int indice = scanner.nextInt();
-        try {
-            System.out.printf("Saldo da conta é %s",saldoConta[indice]);
-        } catch (IndexOutOfBoundsException e){
-            System.out.println("Conta não encontrada");
-        }
 
+        String[] valor;
+
+        System.out.println("Digite as ações separadas por virgula:");
+        valor = scanner.nextLine().split(",");
+
+        double[] acoes = new double[valor.length];
+
+        try {
+            for (int i = 0; i < valor.length; i++) {
+                acoes[i] = Double.parseDouble(valor[i]);
+            }
+            double[] mediaMovel = mediaMovel(acoes);
+            for (double mm : mediaMovel) {
+                System.out.println(mm);
+            }
+        }catch (NumberFormatException e){
+            System.out.printf("\nExceção de formato: %s\n",e.getMessage());
+        } catch (IllegalArgumentException e ){
+            System.out.printf("\nExceção de argumento: %s\n",e.getMessage());
+        }
     }
 
+    static double[] mediaMovel(double[] vetor){
+        if(vetor.length < 3){
+            throw new  IllegalArgumentException("Quantidade de argumento inválido.");
+        }
+        double[] vetorMM = new double[vetor.length-2];
+        for (int i = 0; i < vetor.length-2; i++) {
+            for (int j = 0; j < 3; j++) {
+                vetorMM[i] = vetor[i+j];
+            }
+        }
+        return vetorMM;
+    }
 
 }

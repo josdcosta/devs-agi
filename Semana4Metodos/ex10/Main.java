@@ -1,4 +1,4 @@
-package com.agibank.Semana4d1.ex10;
+package com.agibank.Semana4Metodos.ex10;
 
 import java.util.Random;
 

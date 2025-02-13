@@ -1,4 +1,4 @@
-package com.agibank.Semana4d1.ex5;
+package com.agibank.Semana4Metodos.ex5;
 
 public class Main {
     public static void main(String[] args) {

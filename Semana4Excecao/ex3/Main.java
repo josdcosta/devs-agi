@@ -4,41 +4,31 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
 
-        String[] valor;
-
-        System.out.println("Digite as ações separadas por virgula:");
-        valor = scanner.nextLine().split(",");
-
-        double[] acoes = new double[valor.length];
-
+        double[][] planilhaRisco =
+                {
+                        {1, 0.1, 0.2, 0.3, 0.4},
+                        {1, 0.1, 0.2, 0.3, 0.4},
+                        {1, 0.1, 0.2, 0.3, 0.4},
+                        {1, 0.1, 0.2, 1.1, 0.4},
+                        {1, 0.1, 0.2, 0.3, 0.4}
+                };
         try {
-            for (int i = 0; i < valor.length; i++) {
-                acoes[i] = Double.parseDouble(valor[i]);
-            }
-            double[] mediaMovel = mediaMovel(acoes);
-            for (double mm : mediaMovel) {
-                System.out.println(mm);
-            }
-        }catch (NumberFormatException e){
-            System.out.printf("\nExceção de formato %s\n",e.getMessage());
-        } catch (IllegalArgumentException e ){
-            System.out.printf("\nExceção de argumento %s\n",e.getMessage());
+            validaPlanilhaRisco(planilhaRisco);
+        } catch (ArrayIndexOutOfBoundsException e){
+            System.out.println(e.getMessage());
         }
     }
 
-    static double[] mediaMovel(double[] vetor){
-        if(vetor.length < 3){
-            throw new  IllegalArgumentException();
-        }
-        double[] vetorMM = new double[vetor.length-2];
-        for (int i = 0; i < vetor.length-2; i++) {
-            for (int j = 0; j < 3; j++) {
-                vetorMM[i] = vetor[i+j];
+    static void validaPlanilhaRisco(double[][] planilhaRisco){
+        for (int i = 0; i < planilhaRisco.length; i++) {
+            for (int j = 0; j < planilhaRisco[0].length; j++) {
+                if(planilhaRisco[i][j] > 1.0 || planilhaRisco[i][j] < 0){
+                    String message = String.format("Valor inválido na posição [%d][%d]", i, j);
+                    throw new ArrayIndexOutOfBoundsException(message);
+                }
             }
         }
-        return vetorMM;
     }
 
 }
