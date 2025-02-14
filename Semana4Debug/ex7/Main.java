@@ -1,35 +1,25 @@
-package com.agibank.Semana4Debug.ex7;
+package com.agibank.Semana4Debug.ex8;
 
 public class Main {
     public static void main(String[] args) {
-
-       double[][] precosSimulados = simularEmprestimoPrice(1000, 5, 12);
-
-        for (double[] precosSimulado : precosSimulados){
-            for (double v : precosSimulado){
-                System.out.printf("%.2f ",v);
-            }
-            System.out.println();
+        double[][] matrizRisco = {
+                {1.0, 1.2, 1.1, 1.3},
+                {0.9, 1.0, 1.1, 1.2},
+                {1.5, 1.6, 1.4, 1.3}
+        };
+        for(double somaVariacoes: somaModuloVariacoes(matrizRisco)){
+            System.out.printf("%.2f ",somaVariacoes);
         }
     }
-
-    static double[][] simularEmprestimoPrice(double valorEmprestimo, double taxaMensal, int parcelas){
-       double[][] matrizPrice = new double[parcelas+1][5];
-       double taxa = taxaMensal/100;
-       double saldoDevedorAntes;
-       double saldoDevedorDepois = valorEmprestimo;
-       double juros = 0;
-       double PMT = 0;
-       for (int i = 0; i < matrizPrice.length; i++){
-            saldoDevedorAntes = saldoDevedorDepois;
-            saldoDevedorDepois = saldoDevedorDepois - (PMT - juros);
-            matrizPrice[i] = new double[]{i,saldoDevedorAntes, juros, PMT-juros, saldoDevedorDepois};
-            PMT = (valorEmprestimo*taxa)/(1-Math.pow(1+taxa,-parcelas));
-            juros = saldoDevedorDepois*taxa;
-       }
-       System.out.println(PMT);
-       return matrizPrice;
+    
+    static double[] somaModuloVariacoes(double[][] matrizRisco){
+        double[] vetorSomaVariacoes = new double[matrizRisco.length];
+        for (int i = 0; i < matrizRisco.length; i++) {
+            for (int j = 0; j < matrizRisco[i].length-1; j++) {
+               vetorSomaVariacoes[i] += Math.abs(matrizRisco[i][j+1] - matrizRisco[i][j]);
+            }
+        }
+        return vetorSomaVariacoes;
     }
-
 }
 
