@@ -1,4 +1,4 @@
-package com.agibank.Semana4Debug.ex8;
+package com.agibank.Semana4Debug.ex7;
 
 public class Main {
     public static void main(String[] args) {
