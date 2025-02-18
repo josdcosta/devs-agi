@@ -25,7 +25,6 @@ public class Main {
         //Entradas da consulta das ações
         int acao = 1;
         int dia = 6;
-
         int opAcao;
         double media;
         try{
@@ -48,13 +47,13 @@ public class Main {
         }
 
         double[] simulacao = simulacaoLucroPerda(matrizCarteiraInvest);
-        for (int i = 0; i < simulacao.length; i++) {
-            if(simulacao[i]==0){
-                System.out.printf("Não houve lucro/perda %.2f\n", simulacao[i]);
-            } else if (simulacao[i] > 0) {
-                System.out.printf("Lucro %.2f%%\n", simulacao[i]);
-            } else{
-                System.out.printf("Perda %.2f%%\n", simulacao[i]);
+        for (double v : simulacao) {
+            if (v == 0) {
+                System.out.printf("Não houve lucro/perda %.2f\n", v);
+            } else if (v > 0) {
+                System.out.printf("Lucro %.2f%%\n", v);
+            } else {
+                System.out.printf("Perda %.2f%%\n", v);
             }
         }
 
